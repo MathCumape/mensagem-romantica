@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensagem Romântica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ff4b6e, #ff7eb3);
+            text-align: center;
+            padding: 50px;
+            animation: fadeIn 2s ease-in-out;
+            overflow: hidden;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+            display: inline-block;
+            position: relative;
+            animation: pulse 3s infinite;
+        }
+
+        h1 {
+            color: #ff3366;
+            animation: glow 1.5s ease-in-out infinite alternate;
+        }
+
+        button {
+            background: #ff3366;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s ease-in-out, transform 0.2s;
+        }
+
+        button:hover {
+            background: #ff0044;
+            transform: scale(1.1);
+        }
+
+        #message {
+            font-size: 18px;
+            color: #444;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+
+        /* Animações */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0px 0px 10px #ff3366; }
+            to { text-shadow: 0px 0px 20px #ff7eb3; }
+        }
+
+        /* Fundo animado com corações */
+        .hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            opacity: 0.7;
+            clip-path: polygon(50% 0%, 61% 25%, 98% 35%, 75% 60%, 80% 100%, 50% 80%, 20% 100%, 25% 60%, 2% 35%, 39% 25%);
+            animation: float 4s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0.8); }
+            100% { transform: translateY(-10vh) scale(1.2); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Sinara e Matheus</h1>
+        <button onclick="changeMessage()">Mostrar Mensagem</button>
+        <p id="message"></p>
+    </div>
+
+    <div class="hearts"></div>
+
+    <script>
+        function changeMessage() {
+            document.getElementById("message").innerText = "A vida nos testa, mas juntos somos mais fortes. Cada obstáculo vencido reforça o laço que nos une, mostrando que o verdadeiro amor não se mede pelos dias fáceis, mas pela força que encontramos um no outro nos momentos difíceis.";
+            document.getElementById("message").style.opacity = 1;
+
+            // Criando corações animados
+            const heartsContainer = document.querySelector('.hearts');
+            for (let i = 0; i < 15; i++) {
+                let heart = document.createElement("div");
+                heart.className = "heart";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+                heartsContainer.appendChild(heart);
+            }
+        }
+    </script>
+
+</body>
+</html>
